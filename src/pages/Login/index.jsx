@@ -1,24 +1,21 @@
-import React, { useState } from "react";
 import { Container, FormContainer, BannerContainer } from "./styles";
-import CustomInput from "../../components/CustomInput";
 import { useAuth } from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
 
 export default function Index() {
-    const { login, loading, error } = useAuth();
+    const { login, loading } = useAuth();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        clearErrors,
+    } = useForm();
 
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        const credentials = {
-            email,
-            password,
-        };
-
-        login(credentials);
-    }
+    const onSubmit = (data) => {
+        clearErrors();
+        login(data);
+    };
 
     return (
         <Container>
@@ -28,21 +25,35 @@ export default function Index() {
                 <h1>Welcome back</h1>
                 <span>Sign in to continue using studify</span>
 
-                <form onSubmit={handleSubmit}>
-                    <CustomInput
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input
                         type="email"
-                        id="email"
-                        label="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
+                        {...register("email", {
+                            required: "Email is required",
+                            minLength: {
+                                value: 6,
+                                message:
+                                    "Too Short. Must have a minimun of 6 characters",
+                            },
+                            maxLength: 150,
+                        })}
                     />
-                    <CustomInput
+                    {errors.email && <p>{errors.email.message}</p>}
+                    <input
                         type="password"
-                        id="password"
-                        label="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        name="password"
+                        {...register("password", {
+                            required: "Password is required",
+                            minLength: {
+                                value: 6,
+                                message:
+                                    "Too Short. Must have a minimun of 6 characters",
+                            },
+                            maxLength: 72,
+                        })}
                     />
+                    {errors.password && <p>{errors.password.message}</p>}
 
                     <a href="/">Forgot your password?</a>
 
