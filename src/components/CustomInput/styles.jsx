@@ -11,6 +11,7 @@ export const CustomInput = styled.div`
         padding: 0.5rem;
         border-bottom: 1px solid;
         width: 100%;
+        background-color: transparent;
     }
 
     label {
@@ -26,7 +27,7 @@ export const CustomInput = styled.div`
     .form__input:focus ~ .form__label,
     .form__input:not(:placeholder-shown).form__input:not(:focus)
         ~ .form__label {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         bottom: 2.25rem;
 
         opacity: 0.8;

@@ -17,6 +17,10 @@ export const Container = styled.main`
     > * {
         flex: 1;
     }
+
+    @media (max-width: 720px) {
+        background-image: linear-gradient(to top, #00000016, white, #00000016);
+    }
 `;
 
 export const BannerContainer = styled.div`
@@ -24,6 +28,10 @@ export const BannerContainer = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    @media (max-width: 720px) {
+        display: none;
+    }
 `;
 
 export const FormContainer = styled.form`
@@ -35,7 +43,7 @@ export const FormContainer = styled.form`
     justify-content: center;
 
     h1 {
-        font-size: clamp(1.5rem, 5vw, 4rem);
+        font-size: clamp(2.5rem, 5vw, 4rem);
         color: ${(props) => props.theme.blue};
     }
 
@@ -46,16 +54,17 @@ export const FormContainer = styled.form`
     }
 
     form {
-        margin: 1rem 0;
+        margin: 1rem 0 0;
 
         > div + div {
-            margin: 2rem auto;
+            margin: 2rem auto 1rem;
         }
 
         a {
             display: block;
             margin-bottom: 1rem;
             color: ${(props) => props.theme.brownLight};
+            font-size: 0.9rem;
         }
 
         button {
