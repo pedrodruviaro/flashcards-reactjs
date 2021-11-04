@@ -52,6 +52,7 @@ img,
 picture {
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -82,5 +83,15 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+
+button {
+        cursor: pointer;
+    }
+
+    [disabled]{
+        opacity: .6;
+        cursor: not-allowed;
+    }
 
 `;
