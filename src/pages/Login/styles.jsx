@@ -34,7 +34,7 @@ export const BannerContainer = styled.div`
     }
 `;
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
     background-color: #fff;
     padding: 2rem;
 
@@ -61,7 +61,7 @@ export const FormContainer = styled.form`
         }
 
         a {
-            display: block;
+            display: inline-block;
             margin-bottom: 1rem;
             color: ${(props) => props.theme.brownLight};
             font-size: 0.9rem;
@@ -89,7 +89,24 @@ export const FormContainer = styled.form`
 
     p {
         a {
-            color: ${(props) => props.theme.brownDark};
+            color: ${(props) => props.theme.brownLight};
+            display: inline-block;
+            position: relative;
+
+            &:after {
+                content: "";
+                width: 100%;
+                height: 1px;
+                background-color: ${(props) => props.theme.brownLight};
+                position: absolute;
+                display: block;
+                transform: scale(0);
+                transition: transform 300ms;
+            }
+
+            &:hover::after {
+                transform: scale(1);
+            }
         }
     }
 `;
